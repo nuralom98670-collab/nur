@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Login • RoboticsLeb</title>
+
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  <!-- চাইলে পরে forms.css add করবে -->
+  <!-- <link rel="stylesheet" href="../assets/css/forms.css" /> -->
+</head>
+
+<body>
+  <div class="dashboard" style="min-height:100vh;">
+    <main class="main" style="padding:32px; display:flex; align-items:center; justify-content:center;">
+      <section class="card" style="max-width:420px; width:100%;">
+        <div class="card-head">
+          <h2 style="margin:0;">Admin Login</h2>
+          <div class="muted">Sign in to manage RoboticsLeb</div>
+        </div>
+
+        <div class="hr"></div>
+
+        <form id="loginForm" autocomplete="on">
+          <label class="muted" for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" placeholder="admin@roboticsleb.com" required />
+
+          <div style="height:10px;"></div>
+
+          <label class="muted" for="password">Password</label>
+          <input class="input" id="password" name="password" type="password" placeholder="••••••••" required />
+
+          <div style="height:14px;"></div>
+
+          <button class="btn primary" type="submit" style="width:100%;">Sign In</button>
+
+          <div style="height:12px;"></div>
+          <div class="muted" id="loginStatus" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/admin-login.js"></script>
+</body>
+</html>

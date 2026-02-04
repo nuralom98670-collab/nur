@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoboticsLeb • Home</title>
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="./"><span class="dot"></span><span class="logo-text">RoboticsLeb</span></a>
+      <nav class="links" aria-label="Main navigation">
+        <a class="active" href="./">Home</a>
+        <a href="./shop">Shop</a>
+        <a href="./blog">Blog</a>
+        <a href="./services">Services</a>
+        <a href="./apps">Apps</a>
+        <a href="./account">Account</a>
+        <a href="./contact">Contact</a>
+        <a href="./about">About</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn" href="./cart">Cart <span class="badge" id="cartCount">0</span></a>
+        <a class="btn primary" href="/login.html">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <div class="hero-text">
+        <h1>Build smarter with robotics parts & kits.</h1>
+        <p class="muted">Motors, sensors, controllers, and complete kits — curated for students and makers.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="./shop">Browse Products</a>
+          <a class="btn" href="./contact">Get Support</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="muted">Products</div><div class="stat-value" id="kpiProducts">—</div></div>
+          <div class="stat"><div class="muted">In Stock</div><div class="stat-value" id="kpiInStock">—</div></div>
+          <div class="stat"><div class="muted">Sold</div><div class="stat-value" id="kpiSold">—</div></div>
+          <div class="stat"><div class="muted">Fast Delivery</div><div class="stat-value">Dhaka/BD</div></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-box" style="gap:10px;">
+          <div id="starterVideoTitle" class="muted" style="display:none; font-weight:700;"></div>
+          <div id="starterVideoWrap" style="width:100%; display:none;">
+            <div style="position:relative; width:100%; padding-top:56.25%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08);">
+              <iframe id="starterVideo" title="Starter Kit Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Featured Products</h2>
+        <a class="btn" href="./shop">View all</a>
+      </div>
+      <div class="grid three" id="featuredGrid"></div>
+      <div class="muted" id="homeStatus" style="padding:12px 0;"></div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Popular Categories</h2>
+        <span class="muted">Quick access</span>
+      </div>
+      <div class="grid three">
+        <a class="card linkcard" href="./shop?cat=sensors"><h3>Sensors</h3><p class="muted">Distance, motion, IR, IMU</p></a>
+        <a class="card linkcard" href="./shop?cat=motors"><h3>Motors</h3><p class="muted">Servo, DC, stepper</p></a>
+        <a class="card linkcard" href="./shop?cat=controllers"><h3>Controllers</h3><p class="muted">Arduino, ESP, drivers</p></a>
+      </div>
+    </section>
+    <div class="hr"></div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Why RoboticsLeb</h2>
+        <span class="muted">Everything you need to build, learn and ship.</span>
+      </div>
+      <div class="grid three">
+        <div class="card" style="padding:16px;">
+          <h3 style="margin-top:0;">Quality parts</h3>
+          <p class="muted">Tested motors, sensors and controllers—so your project just works.</p>
+          <div class="pills">
+            <span class="pill">Original</span>
+            <span class="pill">Warranty</span>
+            <span class="pill">Support</span>
+          </div>
+        </div>
+        <div class="card" style="padding:16px;">
+          <h3 style="margin-top:0;">Fast delivery</h3>
+          <p class="muted">Inside Dhaka and nationwide delivery with clear shipping charges.</p>
+          <div class="pills">
+            <span class="pill">Dhaka ৳100</span>
+            <span class="pill">Outside ৳150</span>
+          </div>
+        </div>
+        <div class="card" style="padding:16px;">
+          <h3 style="margin-top:0;">Custom services</h3>
+          <p class="muted">Need 3D printing, PCB, or prototyping help? Send requirements and files.</p>
+          <div class="pills">
+            <span class="pill">3D Print</span>
+            <span class="pill">PCB</span>
+            <span class="pill">Prototype</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>What customers say</h2>
+        <span class="muted">Real feedback from makers & students</span>
+      </div>
+      <div class="testimonials">
+        <div class="quote">
+          <div style="font-weight:700;">“Delivery was quick and packaging was perfect.”</div>
+          <div class="muted" style="margin-top:8px;">I ordered a starter kit and built my first line follower robot in 1 day.</div>
+          <div class="who"><span class="avatar"></span><div><div style="font-weight:700;">Arafat</div><div class="muted">Dhaka</div></div></div>
+        </div>
+        <div class="quote">
+          <div style="font-weight:700;">“Support team guided me to pick the right motor driver.”</div>
+          <div class="muted" style="margin-top:8px;">Saved me a lot of time. The parts were original and worked instantly.</div>
+          <div class="who"><span class="avatar"></span><div><div style="font-weight:700;">Nusrat</div><div class="muted">Chattogram</div></div></div>
+        </div>
+        <div class="quote">
+          <div style="font-weight:700;">“3D print service was accurate.”</div>
+          <div class="muted" style="margin-top:8px;">Uploaded STL and got a clean print—great quality control.</div>
+          <div class="who"><span class="avatar"></span><div><div style="font-weight:700;">Siam</div><div class="muted">Rajshahi</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="section card" style="padding:18px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+        <div>
+          <h2 style="margin:0 0 6px;">Get updates</h2>
+          <div class="muted">New products, discounts and blog tips—straight to your inbox.</div>
+        </div>
+        <a class="btn primary" href="./contact">Contact us</a>
+      </div>
+    </section>
+
+
+    <footer class="footer muted">© <span id="year"></span> RoboticsLeb</footer>
+  </main>
+
+  <!-- Ensure global UI (including mobile hamburger) loads even if page module changes -->
+  <script type="module" src="./assets/js/core/site-ui.js"></script>
+  <script type="module" src="./assets/js/pages/home.js"></script>
+</body>
+</html>

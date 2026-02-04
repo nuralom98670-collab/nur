@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Service Items • Admin • RoboticsLeb</title>
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="dot"></div>
+        <div><h1>RoboticsLeb</h1><p>Admin Panel</p></div>
+      </div>
+
+      <nav class="nav" aria-label="Admin navigation">
+        <a href="dashboard">Dashboard</a>
+
+        <div class="group">Shop</div>
+        <a href="products">Products</a>
+        <a href="orders">Orders</a>
+        <a href="reviews">Reviews</a>
+        <a href="users">Customers</a>
+
+        <div class="group">Content</div>
+        <a href="posts">Posts</a>
+        <a class="active" href="service-items">Services</a>
+        <a href="apps">Apps</a>
+
+        <div class="group">Services</div>
+        <a href="services">Services / Servers</a>
+
+        <div class="group">Taxonomy</div>
+        <a href="categories">Categories</a>
+        <a href="tags">Tags</a>
+
+        <div class="group">Inbox</div>
+        <a href="messages">Messages</a>
+        <a href="notifications">Notifications</a>
+
+        <div class="group">System</div>
+        <a href="settings">Settings</a>
+        <a href="profile">Profile</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <input class="input search" id="q" placeholder="Search services..." aria-label="Search services" />
+        <div class="actions">
+          <span class="badge" id="notifBadge">Notifications • 0</span>
+          <div data-userbox></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="pagehead">
+          <div>
+            <h2>Services</h2>
+            <div class="muted">Add services you offer</div>
+          </div>
+          <div class="pagehead-actions">
+            <button class="btn primary" id="openCreate">Create Service</button>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <section class="card" id="createCard" style="display:none; margin-bottom:14px;">
+          <div class="card-head"><h3>New Service</h3><span class="badge">create</span></div>
+          <div class="hr"></div>
+          <form id="createForm" class="grid two" style="padding:12px;">
+            <div style="grid-column:1/-1;">
+              <label class="muted">Title</label>
+              <input class="input" name="title" required />
+            </div>
+            <div>
+              <label class="muted">Price</label>
+              <input class="input" name="price" type="number" step="0.01" value="0" />
+            </div>
+            <div style="grid-column:1/-1;">
+              <label class="muted">Description</label>
+              <textarea class="input" name="body" rows="5" required></textarea>
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="muted">Service Cover Image (optional)</label>
+              <input class="input" id="coverFile" type="file" accept="image/*" />
+              <img id="coverPreview" alt="" style="display:none; margin-top:10px; width:100%; max-height:240px; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,.08);" />
+            </div>
+
+            <div style="grid-column:1/-1;">
+              <label class="muted">Service Images (multiple) (optional)</label>
+              <input class="input" id="galleryFiles" type="file" accept="image/*" multiple />
+              <div id="galleryPreview" style="margin-top:10px; display:grid; grid-template-columns: repeat(auto-fill,minmax(120px,1fr)); gap:10px;"></div>
+            </div>
+
+            <div style="grid-column:1/-1; display:flex; gap:12px; align-items:center; padding:6px 0;">
+              <label style="display:flex; gap:10px; align-items:center;">
+                <input type="checkbox" id="needsFiles" />
+                <span class="muted">Customer must upload files for this service (e.g. 3D STL, PCB Gerber)</span>
+              </label>
+            </div>
+            <div style="grid-column:1/-1;">
+              <label class="muted">Files hint (optional)</label>
+              <input class="input" name="filesHint" placeholder="Example: Upload STL/STEP files + reference images" />
+            </div>
+            <div style="display:flex; gap:10px; align-items:end;">
+              <button class="btn primary" type="submit">Save</button>
+              <button class="btn" type="button" id="cancelCreate">Cancel</button>
+            </div>
+            <div class="muted" id="createStatus" style="grid-column:1/-1;"></div>
+          </form>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h3>All Services</h3>
+            <span class="badge" id="countBadge">0</span>
+          </div>
+          <div class="hr"></div>
+
+          <div class="tablewrap">
+            <table class="table" id="tbl">
+              <thead>
+                <tr>
+                  <th style="width:90px;">ID</th>
+                  <th>Title</th>
+                  <th style="width:120px;">Price</th>
+                  <th style="width:160px;">Updated</th>
+                  <th style="width:180px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody><tr><td class="muted" colspan="5">Loading…</td></tr></tbody>
+            </table>
+          </div>
+
+          <div class="muted" id="status" style="padding:12px 0;"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/admin-service-items.js"></script>
+</body>
+</html>

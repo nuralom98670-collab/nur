@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order • Admin • RoboticsLeb</title>
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <h1>RoboticsLeb</h1>
+          <p>Admin Panel</p>
+        </div>
+      </div>
+
+
+      <nav class="nav" aria-label="Admin navigation">
+        <a href="./dashboard">Dashboard</a>
+
+        <div class="group">Shop</div>
+        <a href="./products">Products</a>
+        <a href="./orders">Orders</a>
+        <a href="./users">Customers</a>
+
+        <div class="group">Content</div>
+        <a href="./posts">Posts</a>
+
+        <div class="group">Services</div>
+        <a href="./services">Services / Servers</a>
+
+        <div class="group">Taxonomy</div>
+        <a href="./categories">Categories</a>
+        <a href="./tags">Tags</a>
+
+        <div class="group">Inbox</div>
+        <a href="./messages">Messages</a>
+
+        <div class="group">System</div>
+        <a href="./settings">Settings</a>
+        <a href="./profile">Profile</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <input class="input search" placeholder="Search..." aria-label="Search dashboard" />
+        <div class="actions">
+          <span class="badge" id="notifBadge">Notifications • 0</span>
+          <div data-userbox></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="pagehead">
+          <div>
+            <h2>Order Details</h2>
+            <div class="muted">View order information</div>
+          </div>
+          <div class="pagehead-actions"><a class="btn" href="./orders">Back</a></div>
+        </div>
+
+        <div class="hr"></div>
+
+        
+<section class="card" style="padding:12px;">
+  <div class="card-head"><h3>Order</h3><span class="badge" id="orderIdBadge">—</span></div>
+  <div class="hr"></div>
+  <div class="grid two">
+    <div><div class="muted">Status</div><div id="statusVal">—</div></div>
+    <div><div class="muted">Total</div><div id="totalVal">—</div></div>
+    <div><div class="muted">Created</div><div id="createdVal">—</div></div>
+    <div><div class="muted">Customer</div><div id="customerVal">—</div></div>
+  </div>
+  <div style="height:12px"></div>
+  <div class="muted">Items</div>
+  <table class="table" id="itemsTable" style="margin-top:6px;"><thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr></thead><tbody></tbody></table>
+
+  <div id="paymentBox" style="margin-top:12px;"></div>
+
+  <details style="margin-top:8px;"><summary class="muted">Raw JSON</summary><pre id="itemsJson" style="white-space:pre-wrap; line-height:1.4; margin-top:6px;"></pre></details>
+  <div style="height:12px"></div>
+  <button class="btn primary" id="confirmBtn" type="button">Confirm Order</button>
+  <button class="btn" id="processingBtn" type="button">Send to Processing</button>
+  <button class="btn danger" id="rejectBtn" type="button">Reject Order</button>
+  <button class="btn" id="markPaidBtn" type="button">Mark Paid</button>
+  <button class="btn" id="markShippedBtn" type="button">Send to Shipping</button>
+  <button class="btn" id="deliveredBtn" type="button">Mark Delivered</button>
+  <div class="muted" id="statusMsg" style="padding-top:10px;"></div>
+</section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/admin-order-view.js"></script>
+</body>
+</html>

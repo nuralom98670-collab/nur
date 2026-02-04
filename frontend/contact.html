@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact • RoboticsLeb</title>
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="./"><span class="dot"></span><span class="logo-text">RoboticsLeb</span></a>
+      <nav class="links"><a href="./">Home</a><a href="./shop">Shop</a><a href="./blog">Blog</a><a href="./services">Services</a><a href="./apps">App</a><a class="active" href="./contact">Contact</a><a href="./about">About</a></nav>
+      <div class="nav-actions">
+        <a class="btn" href="./cart.html">Cart <span class="badge" id="cartCount">0</span></a>
+        <a class="btn primary" href="/login.html">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="pagehead" style="padding:10px 0;">
+      <div><h2 style="margin:0;">Contact</h2><div class="muted">Send us a message</div></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <section class="card" style="padding:16px;">
+      <form id="contactForm" class="form">
+        <div class="grid two">
+          <label class="field">
+            <span class="label">Name</span>
+            <input class="input" name="name" required placeholder="Your name" />
+          </label>
+          <label class="field">
+            <span class="label">Email</span>
+            <input class="input" name="email" type="email" required placeholder="you@example.com" />
+          </label>
+        </div>
+
+        <label class="field">
+          <span class="label">Subject</span>
+          <input class="input" name="subject" required placeholder="Subject" />
+        </label>
+
+        <label class="field">
+          <span class="label">Message</span>
+          <textarea class="input" name="message" rows="6" required placeholder="Write your message..."></textarea>
+        </label>
+
+        <div style="display:flex; gap:10px; align-items:center; justify-content:space-between;">
+          <button class="btn primary" type="submit">Send Message</button>
+          <div class="muted" id="status"></div>
+        </div>
+      </form>
+
+      <div class="hr"></div>
+      <p class="muted">Email: support@roboticsleb.com • Phone: +880 …</p>
+    </section>
+
+    <footer class="footer muted">© <span id="year"></span> RoboticsLeb</footer>
+  </main>
+
+  <script type="module" src="./assets/js/pages/contact.js"></script>
+</body>
+</html>

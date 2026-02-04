@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Track Order • RoboticsLeb</title>
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="./"><span class="dot"></span><span class="logo-text">RoboticsLeb</span></a>
+      <nav class="links"><a href="./">Home</a><a href="./shop">Shop</a><a href="./cart.html">Cart</a><a href="./account">Dashboard</a></nav>
+      <div class="nav-actions">
+        <a class="btn" href="./cart.html">Cart <span class="badge" id="cartCount">0</span></a>
+        <a class="btn primary" href="/login.html">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="pagehead" style="padding:10px 0;">
+      <div>
+        <h2 style="margin:0;">Track your order</h2>
+        <div class="muted">Use your Order ID and token (auto-filled from checkout)</div>
+      </div>
+      <div class="pagehead-actions"><a class="btn" href="./shop">Continue shopping</a></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <section class="card" style="padding:16px;">
+      <form id="trackForm" class="grid two" style="align-items:end;">
+        <div>
+          <label class="muted">Order ID</label>
+          <input class="input" name="id" id="orderId" placeholder="ord_..." required />
+        </div>
+        <div>
+          <label class="muted">Tracking Token</label>
+          <input class="input" name="token" id="orderToken" placeholder="gt_..." required />
+        </div>
+        <div style="grid-column:1/-1; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button class="btn primary" type="submit">Track</button>
+          <span class="muted" id="status"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" style="padding:16px; margin-top:14px;">
+      <div class="card-head"><h3>Order Details</h3><span class="badge" id="statusBadge">—</span></div>
+      <div class="hr"></div>
+      <div id="orderView" class="muted">Enter your Order ID + Token to view details.</div>
+    </section>
+
+    <footer class="footer muted">© <span id="year"></span> RoboticsLeb</footer>
+  </main>
+
+  <script type="module" src="./assets/js/pages/track-order.js"></script>
+</body>
+</html>

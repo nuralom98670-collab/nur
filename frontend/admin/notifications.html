@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications | Admin</title>
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="title">RoboticsLeb</div>
+          <div class="muted" style="font-size:12px;">Admin Dashboard</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="group">Overview</div>
+        <a href="dashboard">Dashboard</a>
+
+        <div class="group">Commerce</div>
+        <a href="products">Products</a>
+        <a href="orders">Orders</a>
+        <a href="coupons">Coupons</a>
+
+        <div class="group">Inbox</div>
+        <a href="messages">Messages</a>
+        <a class="active" href="notifications">Notifications</a>
+
+        <div class="group">System</div>
+        <a href="settings">Settings</a>
+        <a href="profile">Profile</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <input class="input search" placeholder="Search notifications..." aria-label="Search" id="q" />
+        <div class="actions">
+          <button class="btn" id="markAll">Mark all read</button>
+          <div data-userbox></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="pagehead">
+          <div>
+            <h2>Notifications</h2>
+            <div class="muted">New orders, contact messages, payment proofs.</div>
+          </div>
+        </div>
+        <div class="hr"></div>
+
+        <div id="list"></div>
+        <div class="muted" id="status" style="margin-top:10px;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/admin-notifications.js"></script>
+</body>
+</html>

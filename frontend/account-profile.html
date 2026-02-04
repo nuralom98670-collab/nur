@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Dashboard • RoboticsLeb</title>
+  <link rel="stylesheet" href="/assets/css/theme.css" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body data-default-tab="profile">
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="/"><span class="dot"></span><span class="logo-text">RoboticsLeb</span></a>
+      <nav class="links" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/shop">Shop</a>
+        <a href="/blog">Blog</a>
+        <a href="/services">Services</a>
+        <a href="/apps">Apps</a>
+        <a href="/contact">Contact</a>
+        <a href="/about">About</a>
+        <a class="active" href="/account">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn" href="/cart">Cart <span class="badge" data-cart-count>0</span></a>
+        <a class="btn primary" href="/login.html" id="loginBtn" style="display:none;">Login</a>
+      </div>
+    </div>
+  </header>
+
+<div class="dashboard">
+    <aside class="sidebar">
+      <div class="side-top">
+        <div class="side-card">
+          <div class="side-title">My Account</div>
+          <div class="muted" id="userEmail">—</div>
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <span class="badge" id="userBadge">Guest</span>
+            <span class="badge" id="userSince" style="display:none;">Member</span>
+          </div>
+        </div>
+
+        <nav class="side-nav" aria-label="Dashboard navigation">
+          <button class="side-link active" data-tab="overview">Overview</button>
+          <button class="side-link" data-tab="orders">My Orders</button>
+          <button class="side-link" data-tab="wishlist">Wishlist</button>
+          <button class="side-link" data-tab="reviews">Reviews</button>
+          <button class="side-link" data-tab="profile">Profile</button>
+          <div class="card" style="padding:10px; margin-top:10px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);">
+            <div class="muted" style="font-weight:800; margin-bottom:8px;">Profile actions</div>
+            <div style="display:grid; gap:8px;">
+              <a class="btn" href="/cart" style="text-align:left; width:100%;">Cart <span class="badge" id="cartCount">0</span></a>
+              <a class="btn" href="/account" data-open="notifications" id="notifBtn" style="display:none; text-align:left; width:100%;">Alerts <span class="badge" id="notifCount">0</span></a>
+              <button class="btn primary" id="logoutBtn" style="display:none; width:100%;">Logout</button>
+            </div>
+          </div>
+        </nav>
+
+        <div class="side-help">
+          <div class="muted" style="margin-bottom:10px;">Need help?</div>
+          <a class="btn" href="/contact">Contact Support</a>
+        </div>
+      </div>
+      <div class="side-footer muted">© <span id="year"></span> RoboticsLeb</div>
+    </aside>
+
+    <main class="dash-main">
+      <!-- Logged-out state -->
+      <!-- If JS fails to load, we still want users to see the login prompt. -->
+      <section class="card" id="authGate">
+        <h2 style="margin-top:0;">Login to see your dashboard</h2>
+        <p class="muted">You can place orders without an account, but if you login you can track orders, save wishlist items, and write reviews.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="/login.html">Login / Sign up</a>
+          <a class="btn" href="/shop">Continue shopping</a>
+        </div>
+      </section>
+
+      <!-- Logged-in content -->
+      <section id="dashContent" style="display:none;">
+        <section class="card" style="padding:22px;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+            <div>
+              <h1 style="margin:0 0 6px;" id="helloName">Hello 👋</h1>
+              <div class="muted">Welcome back! Here’s a quick overview of your activity.</div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn" href="/shop">Shop</a>
+              <a class="btn" href="/cart">Go to Cart</a>
+            </div>
+          </div>
+
+          <div class="grid three" style="margin-top:16px;">
+            <div class="card" style="padding:16px;">
+              <div class="muted">Total Orders</div>
+              <div class="stat-value" id="statOrders">—</div>
+            </div>
+            <div class="card" style="padding:16px;">
+              <div class="muted">Pending</div>
+              <div class="stat-value" id="statPending">—</div>
+            </div>
+            <div class="card" style="padding:16px;">
+              <div class="muted">Wishlist Items</div>
+              <div class="stat-value" id="statWishlist">—</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card tab-pane" data-pane="overview" style="padding:22px;">
+          <div class="section-head">
+            <h2 style="margin:0;">Recent Orders</h2>
+            <a class="btn" href="#" data-open="orders">View all</a>
+          </div>
+          <div id="recentOrders"></div>
+          <div class="muted" id="overviewStatus" style="margin-top:10px;"></div>
+        </section>
+
+        <section class="card tab-pane" data-pane="orders" style="padding:22px; display:none;">
+          <div class="section-head">
+            <h2 style="margin:0;">My Orders</h2>
+            <span class="muted">Track your order progress</span>
+          </div>
+          <div id="ordersTable"></div>
+          <div class="muted" id="ordersStatus" style="margin-top:10px;"></div>
+        </section>
+
+        <section class="card tab-pane" data-pane="wishlist" style="padding:22px; display:none;">
+          <div class="section-head">
+            <h2 style="margin:0;">Wishlist</h2>
+            <span class="muted">Save items for later</span>
+          </div>
+          <div class="grid three" id="wishlistGrid"></div>
+          <div class="muted" id="wishlistStatus" style="margin-top:10px;"></div>
+        </section>
+
+        <section class="card tab-pane" data-pane="reviews" style="padding:22px; display:none;">
+          <div class="section-head">
+            <h2 style="margin:0;">My Reviews</h2>
+            <span class="muted">Your recent ratings & reviews</span>
+          </div>
+          <div id="reviewsList"></div>
+          <div class="muted" id="reviewsStatus" style="margin-top:10px;"></div>
+        </section>
+
+        <section class="card tab-pane" data-pane="profile" style="padding:22px; display:none;">
+          <div class="section-head">
+            <h2 style="margin:0;">Profile</h2>
+            <span class="muted">Manage your account</span>
+          </div>
+          <div class="grid" style="gap:12px; max-width:620px;">
+            <div class="card" style="padding:16px;">
+              <div class="muted">Name</div>
+              <div id="profileName">—</div>
+            </div>
+            <div class="card" style="padding:16px;">
+              <div class="muted">Email</div>
+              <div id="profileEmail">—</div>
+            </div>
+            <div class="card" style="padding:16px;">
+              <div class="muted">Phone</div>
+              <div id="profilePhone">—</div>
+            </div>
+            <div class="card" style="padding:16px;">
+              <div class="muted">Address</div>
+              <div id="profileAddress">—</div>
+            </div>
+            <div class="muted">To update profile details, contact support for now. (We can add profile editing next.)</div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/assets/js/pages/account.js?v=1011"></script>
+</body>
+</html>

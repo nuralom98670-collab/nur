@@ -1,0 +1,301 @@
+/* =====================================================
+   DASHBOARD LAYOUT
+===================================================== */
+
+.dashboard{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns: 270px 1fr;
+  align-items:stretch;
+}
+
+/* =====================================================
+   SIDEBAR (CONTENT STICKY, BACKGROUND FIXED)
+===================================================== */
+
+.sidebar{
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  padding:18px;
+  background: transparent;   /* background pseudo-element এ */
+  z-index: 2;
+}
+
+/* Sidebar background – FULL PAGE HEIGHT */
+.sidebar::before{
+  content:"";
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 270px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.04),
+    rgba(255,255,255,.02)
+  );
+  border-right:1px solid rgba(255,255,255,.08);
+  z-index:-1;
+}
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+  margin-bottom:14px;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary2));
+  box-shadow: 0 0 0 6px rgba(124,92,255,.15);
+}
+
+.brand h1{
+  margin:0;
+  font-size:16px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:6px;
+}
+
+.nav .group{
+  margin:12px 6px 4px;
+  color:rgba(255,255,255,.45);
+  font-weight:800;
+  font-size:11px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+}
+
+.nav a{
+  padding:10px;
+  border-radius:12px;
+  border:1px solid transparent;
+  color:rgba(255,255,255,.82);
+  transition: background .12s ease, border-color .12s ease;
+}
+
+.nav a:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.10);
+}
+
+.nav a.active{
+  background:rgba(124,92,255,.18);
+  border-color:rgba(124,92,255,.35);
+}
+
+/* =====================================================
+   MAIN AREA
+===================================================== */
+
+.main{
+  padding:18px;
+  min-height:100vh;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:16px;
+}
+
+.search{ max-width:520px; }
+
+.actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.content{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.pagehead{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.pagehead h2{
+  margin:0 0 6px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.pagehead-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* =====================================================
+   KPI CARDS
+===================================================== */
+
+.kpis{
+  display:grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap:12px;
+}
+
+.kpi-value{
+  font-size:28px;
+  font-weight:900;
+  margin-top:6px;
+}
+
+/* =====================================================
+   GRID SECTIONS
+===================================================== */
+
+.grid.two{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+
+.card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.tablewrap{
+  overflow-x:auto;
+}
+
+/* =====================================================
+   RESPONSIVE (MOBILE)
+===================================================== */
+
+@media (max-width: 980px){
+
+  .dashboard{
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar{
+    position: relative;
+    height:auto;
+  }
+
+  .sidebar::before{
+    position:absolute;
+    inset:0;
+    width:100%;
+  }
+
+  .main{
+    min-height:auto;
+  }
+
+  .kpis{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .grid.two{
+    grid-template-columns: 1fr;
+  }
+
+  .search{
+    max-width:100%;
+  }
+}
+
+
+/* V9 Dashboard UI */
+.dash-main{
+  padding:18px;
+}
+.side-top{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.side-card{
+  padding:14px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.side-title{
+  font-weight:800;
+  font-size: 16px;
+}
+.side-nav{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.side-link{
+  text-align:left;
+  padding:10px 12px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+  color: rgba(255,255,255,.9);
+  cursor:pointer;
+}
+.side-link:hover{
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.05);
+}
+.side-link.active{
+  border-color: rgba(124,92,255,.45);
+  background: rgba(124,92,255,.18);
+}
+.side-help{
+  padding:14px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+}
+.side-footer{
+  padding: 0 6px 10px;
+}
+@media (max-width: 980px){
+  .dashboard{ grid-template-columns: 1fr; }
+  .sidebar{ position: relative; height:auto; }
+  .sidebar::before{ display:none; }
+}

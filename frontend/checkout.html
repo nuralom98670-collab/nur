@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout • RoboticsLeb</title>
+  <link rel="stylesheet" href="./assets/css/theme.css" />
+  <link rel="stylesheet" href="./assets/css/site.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="./"><span class="dot"></span><span class="logo-text">RoboticsLeb</span></a>
+      <nav class="links"><a href="./">Home</a><a href="./shop">Shop</a><a href="./blog">Blog</a><a href="./services">Services</a><a href="./apps">App</a><a href="./contact">Contact</a><a href="./about">About</a></nav>
+      <div class="nav-actions">
+        <a class="btn" href="./cart.html">Cart <span class="badge" id="cartCount">0</span></a>
+        <a class="btn primary" href="/login.html">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="pagehead" style="padding:10px 0;">
+      <div><h2 style="margin:0;">Checkout</h2><div class="muted">Complete your order</div></div>
+      <div class="pagehead-actions"><a class="btn" href="./cart.html">Back to Cart</a></div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid two" style="align-items:start;">
+      <section class="card" style="padding:16px;">
+        <div class="card-head"><h3>Shipping Details</h3><span class="badge">Required</span></div>
+        <div class="hr"></div>
+
+        <div class="muted" style="margin-bottom:10px;">
+          You can place an order as a guest. For faster checkout and a full dashboard, login with Google.
+        </div>
+
+        <form id="checkoutForm" class="grid two">
+          <div><label class="muted">Full Name</label><input class="input" name="name" required /></div>
+          <div><label class="muted">Phone</label><input class="input" name="phone" required /></div>
+          <div><label class="muted">Email</label><input class="input" name="email" type="email" placeholder="you@example.com" /></div>
+          <div class="grid one" style="grid-column:1/-1;">
+            <label class="muted">Address</label>
+            <textarea class="input" name="address" rows="3" required></textarea>
+          </div>
+          <div><label class="muted">City</label><input class="input" name="city" placeholder="Dhaka" required /></div>
+          <div><label class="muted">District</label><input class="input" name="district" placeholder="Dhaka" /></div>
+          <div><label class="muted">Post Code</label><input class="input" name="postcode" placeholder="1207" /></div>
+          <div><label class="muted">Delivery Area</label>
+            <select class="input" name="deliveryArea" id="deliveryArea">
+              <option value="dhaka">Inside Dhaka</option>
+              <option value="outside">Outside Dhaka</option>
+            </select>
+          </div>
+          <div><label class="muted">Coupon Code (Optional)</label><input class="input" name="coupon" placeholder="e.g., SAVE10" /></div>
+          <div class="grid one" style="grid-column:1/-1;"><label class="muted">Order Notes (Optional)</label><textarea class="input" name="notes" rows="3" placeholder="Any instructions…"></textarea></div>
+          <div style="grid-column:1/-1;"><label class="muted">Payment Method</label>
+            <select class="input" name="paymentMethod" id="paymentMethod">
+              <option value="cod">Cash on Delivery</option>
+              <option value="bkash">bKash</option>
+              <option value="nagad">Nagad</option>
+              <option value="rocket">Rocket</option>
+            </select>
+            <div class="muted" id="paymentHint" style="padding-top:6px;"></div>
+          </div>
+
+          <!-- Manual payment section (bkash/nagad/rocket) -->
+          <div id="manualPaymentBox" class="card" style="grid-column:1/-1; padding:12px; display:none;">
+            <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; align-items:center;">
+              <div style="font-weight:800;">Manual Payment Details</div>
+              <span class="badge">required</span>
+            </div>
+            <div class="muted" id="manualPaymentInstr" style="margin-top:8px; line-height:1.6;"></div>
+            <div style="height:10px;"></div>
+            <div class="grid two">
+              <div>
+                <label class="muted">Transaction ID</label>
+                <input class="input" name="paymentTxnId" id="paymentTxnId" placeholder="e.g., 8A1B2C3D" />
+              </div>
+              <div>
+                <label class="muted">Sender Number (optional)</label>
+                <input class="input" name="paymentSender" id="paymentSender" placeholder="01XXXXXXXXX" />
+              </div>
+              <div style="grid-column:1/-1;">
+                <label class="muted">Payment Screenshot (required)</label>
+                <input class="input" type="file" id="paymentProof" accept="image/*" />
+                <div class="muted" style="font-size:12px; margin-top:6px;">Upload a clear screenshot of your payment.</div>
+              </div>
+            </div>
+          </div>
+          <div class="grid one" style="grid-column:1/-1;">
+            <label style="display:flex; gap:10px; align-items:flex-start;" class="muted">
+              <input type="checkbox" name="agree" required style="margin-top:4px;" />
+              <span>I agree to the Terms & Conditions and confirm my delivery details are correct.</span>
+            </label>
+            <button class="btn primary" type="submit">Place Order</button>
+            <div class="muted" id="status" style="padding-top:8px;"></div>
+          </div>
+        </form>
+      </section>
+
+      <aside class="card" style="padding:16px;">
+        <div class="card-head"><h3>Order Summary</h3><span class="badge">Review</span></div>
+        <div class="hr"></div>
+        <div id="summaryList"></div>
+        <div class="hr" style="margin:14px 0;"></div>
+        <div style="display:flex; justify-content:space-between;"><div class="muted">Subtotal</div><div id="sumSubtotal">৳0.00</div></div>
+        <div style="height:8px;"></div>
+        <div style="display:flex; justify-content:space-between;"><div class="muted">Delivery</div><div id="sumShipping">৳0.00</div></div>
+        <div style="height:8px;"></div>
+        <div id="discountRow" style="display:none; justify-content:space-between;"><div class="muted">Discount</div><div id="sumDiscount">-৳0.00</div></div>
+        <div class="hr" style="margin:14px 0;"></div>
+        <div style="display:flex; justify-content:space-between; font-weight:800; font-size:18px;"><div>Total</div><div id="sumTotal">৳0.00</div></div>
+      </aside>
+    </div>
+
+    <footer class="footer muted">© <span id="year"></span> RoboticsLeb</footer>
+  </main>
+
+  <script type="module" src="./assets/js/pages/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Message • Admin • RoboticsLeb</title>
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <h1>RoboticsLeb</h1>
+          <p>Admin Panel</p>
+        </div>
+      </div>
+
+
+      <nav class="nav" aria-label="Admin navigation">
+        <a href="./dashboard">Dashboard</a>
+
+        <div class="group">Shop</div>
+        <a href="./products">Products</a>
+        <a href="./orders">Orders</a>
+        <a href="./users">Customers</a>
+
+        <div class="group">Content</div>
+        <a href="./posts">Posts</a>
+
+        <div class="group">Services</div>
+        <a href="./services">Services / Servers</a>
+
+        <div class="group">Taxonomy</div>
+        <a href="./categories">Categories</a>
+        <a href="./tags">Tags</a>
+
+        <div class="group">Inbox</div>
+        <a href="./messages">Messages</a>
+
+        <div class="group">System</div>
+        <a href="./settings">Settings</a>
+        <a href="./profile">Profile</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <input class="input search" placeholder="Search..." aria-label="Search dashboard" />
+        <div class="actions">
+          <span class="badge" id="notifBadge">Notifications • 0</span>
+          <div data-userbox></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="pagehead">
+          <div>
+            <h2>Message</h2>
+            <div class="muted">Read message details</div>
+          </div>
+          <div class="pagehead-actions"><a class="btn" href="./messages">Back</a></div>
+        </div>
+
+        <div class="hr"></div>
+
+        
+<div class="grid two">
+  <section class="card" style="padding:12px;">
+    <div class="card-head"><h3>Sender</h3><span class="badge" id="statusBadge">—</span></div>
+    <div class="hr"></div>
+    <div class="muted">Message ID</div><div id="msgId">—</div>
+    <div style="height:10px"></div>
+    <div class="muted">Name</div><div id="name">—</div>
+    <div style="height:10px"></div>
+    <div class="muted">Email</div><div id="email">—</div>
+    <div style="height:10px"></div>
+    <div class="muted">Received</div><div id="createdAt">—</div>
+  </section>
+  <section class="card" style="padding:12px;">
+    <div class="card-head"><h3>Message</h3><span class="badge">Body</span></div>
+    <div class="hr"></div>
+    <div style="font-weight:700" id="subject">—</div>
+    <div style="height:12px"></div>
+    <div id="body" style="white-space:pre-wrap; line-height:1.6;">—</div>
+    <div style="height:18px"></div>
+    <div class="hr"></div>
+    <div style="font-weight:800; margin-top:14px;">Replies</div>
+    <div class="muted" style="margin-top:6px;">Reply to this customer (will be emailed if an email address is available).</div>
+    <div id="replies" style="margin-top:10px;"></div>
+    <div style="margin-top:12px; display:flex; flex-direction:column; gap:10px;">
+      <textarea class="input" id="replyInput" rows="4" placeholder="Write your reply…"></textarea>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <button class="btn" id="sendReplyBtn" type="button">Send reply</button>
+        <div class="muted" id="replyStatus"></div>
+      </div>
+    </div>
+
+    <div style="height:12px"></div>
+    <button class="btn primary" id="markReadBtn"  type="button">Mark as Read</button>
+    <div class="muted" id="statusMsg" style="padding-top:10px;"></div>
+  </section>
+</div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/admin-message-view.js"></script>
+</body>
+</html>

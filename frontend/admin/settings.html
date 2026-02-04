@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings • Admin • RoboticsLeb</title>
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <link rel="stylesheet" href="../assets/css/dashboard.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="dot"></div>
+        <div>
+          <h1>RoboticsLeb</h1>
+          <p>Admin Panel</p>
+        </div>
+      </div>
+
+
+      <nav class="nav" aria-label="Admin navigation">
+        <a href="./dashboard">Dashboard</a>
+
+        <div class="group">Shop</div>
+        <a href="./products">Products</a>
+        <a href="./orders">Orders</a>
+        <a href="./users">Customers</a>
+
+        <div class="group">Content</div>
+        <a href="./posts">Posts</a>
+
+        <div class="group">Services</div>
+        <a href="./services">Services / Servers</a>
+
+        <div class="group">Taxonomy</div>
+        <a href="./categories">Categories</a>
+        <a href="./tags">Tags</a>
+
+        <div class="group">Inbox</div>
+        <a href="./messages">Messages</a>
+
+        <div class="group">System</div>
+        <a href="./settings">Settings</a>
+        <a href="./profile">Profile</a>
+        <a href="#" data-logout>Logout</a>
+      </nav>
+
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <input class="input search" placeholder="Search..." aria-label="Search dashboard" />
+        <div class="actions">
+          <span class="badge" id="notifBadge">Notifications • 0</span>
+          <div data-userbox></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="pagehead">
+          <div>
+            <h2>Settings</h2>
+            <div class="muted">Shop settings (demo)</div>
+          </div>
+          <div class="pagehead-actions"></div>
+        </div>
+
+        <div class="hr"></div>
+
+        
+<section class="card">
+  <div class="card-head"><h3>Store Settings</h3><span class="badge">system</span></div>
+  <div class="hr"></div>
+  <form id="settingsForm" class="grid two" style="padding:12px;">
+    <div>
+      <label class="muted">Shop Name</label>
+      <input class="input" name="shopName" />
+    </div>
+    <div>
+      <label class="muted">Currency</label>
+      <input class="input" name="currency" />
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <label class="muted">Site Logo</label>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <input class="input" name="siteLogoUrl" id="siteLogoUrl" placeholder="/uploads/logo.png" style="flex:1; min-width:240px;" />
+        <input class="input" type="file" id="siteLogoFile" accept="image/*" style="max-width:260px;" />
+        <button class="btn" type="button" id="uploadLogoBtn">Upload</button>
+      </div>
+      <div class="muted" style="padding-top:6px;">Upload a logo or paste an URL. It will appear next to the brand name in the top menu.</div>
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <label class="muted">Footer Social Links</label>
+      <div class="grid two">
+        <div>
+          <label class="muted">Facebook URL</label>
+          <input class="input" name="socialFacebook" placeholder="https://facebook.com/yourpage" />
+        </div>
+        <div>
+          <label class="muted">Instagram URL</label>
+          <input class="input" name="socialInstagram" placeholder="https://instagram.com/yourpage" />
+        </div>
+        <div>
+          <label class="muted">WhatsApp URL</label>
+          <input class="input" name="socialWhatsapp" placeholder="https://wa.me/8801xxxxxxxxx" />
+        </div>
+        <div>
+          <label class="muted">YouTube URL</label>
+          <input class="input" name="socialYoutube" placeholder="https://youtube.com/@yourchannel" />
+        </div>
+      </div>
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Starter Kit YouTube URL (dashboard controlled)</label>
+      <input class="input" name="starterVideoUrl" placeholder="https://www.youtube.com/watch?v=..." />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Home Video Title (optional)</label>
+      <input class="input" name="starterVideoTitle" placeholder="Starter Kit Video" />
+      <div class="muted" style="padding-top:6px;">This title will show on Home page above the video.</div>
+    </div>
+    <div>
+      <label class="muted">Delivery (Inside Dhaka)</label>
+      <input class="input" name="deliveryDhaka" type="number" min="0" step="1" placeholder="100" />
+    </div>
+    <div>
+      <label class="muted">Delivery (Outside Dhaka)</label>
+      <input class="input" name="deliveryOutside" type="number" min="0" step="1" placeholder="150" />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Payment Methods (comma separated)</label>
+      <input class="input" name="paymentMethods" placeholder="cod,bkash,nagad,rocket" />
+      <div class="muted" style="padding-top:6px;">Use: cod, bkash, nagad, rocket</div>
+    </div>
+
+    <div>
+      <label class="muted">bKash Number</label>
+      <input class="input" name="bkashNumber" placeholder="01XXXXXXXXX" />
+    </div>
+    <div>
+      <label class="muted">Nagad Number</label>
+      <input class="input" name="nagadNumber" placeholder="01XXXXXXXXX" />
+    </div>
+    <div>
+      <label class="muted">Rocket Number</label>
+      <input class="input" name="rocketNumber" placeholder="01XXXXXXXXX" />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Payment Instructions (optional)</label>
+      <textarea class="input" name="paymentInstructions" rows="3" placeholder="Example: Send money to our number and upload the transaction ID + screenshot from your dashboard."></textarea>
+      <div class="muted" style="padding-top:6px;">This text will show as a hint on checkout and in user dashboard for manual payments.</div>
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <div class="hr"></div>
+      <h4 style="margin:0;">Home Page Customization</h4>
+      <div class="muted" style="padding-top:6px;">You can change Hero texts + buttons and enable an offer banner without touching code.</div>
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <label class="muted">Hero Title</label>
+      <input class="input" name="homeHeroTitle" placeholder="Build smarter with robotics parts & kits." />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Hero Subtitle</label>
+      <input class="input" name="homeHeroSubtitle" placeholder="Motors, sensors, controllers, and complete kits…" />
+    </div>
+    <div>
+      <label class="muted">Primary Button Text</label>
+      <input class="input" name="homeHeroPrimaryText" placeholder="Browse Products" />
+    </div>
+    <div>
+      <label class="muted">Primary Button Link</label>
+      <input class="input" name="homeHeroPrimaryLink" placeholder="/shop" />
+    </div>
+    <div>
+      <label class="muted">Secondary Button Text</label>
+      <input class="input" name="homeHeroSecondaryText" placeholder="Get Support" />
+    </div>
+    <div>
+      <label class="muted">Secondary Button Link</label>
+      <input class="input" name="homeHeroSecondaryLink" placeholder="/contact" />
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <label class="muted">Highlights (JSON) – optional</label>
+      <textarea class="input" name="homeHighlightsJson" rows="4" placeholder='[{"title":"Quality parts","body":"Tested motors and sensors..."}]'></textarea>
+      <div class="muted" style="padding-top:6px;">If you keep this empty, the default "Why RoboticsLeb" cards stay.</div>
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <div class="hr"></div>
+      <h4 style="margin:0;">Offer Banner</h4>
+    </div>
+
+    <div>
+      <label class="muted">Enable Offer (1 or 0)</label>
+      <input class="input" name="offerEnabled" placeholder="0" />
+    </div>
+    <div>
+      <label class="muted">Offer Ends At (optional ISO date)</label>
+      <input class="input" name="offerEndsAt" placeholder="2026-12-31" />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Offer Text</label>
+      <input class="input" name="offerText" placeholder="🔥 New Year Offer – Up to 20% OFF!" />
+    </div>
+    <div>
+      <label class="muted">Offer Type (percent or flat)</label>
+      <select class="input" name="offerType">
+        <option value="">— (use Offer Text only) —</option>
+        <option value="percent">percent</option>
+        <option value="flat">flat</option>
+      </select>
+    </div>
+    <div>
+      <label class="muted">Offer Value (number)</label>
+      <input class="input" name="offerValue" placeholder="10" />
+    </div>
+    <div>
+      <label class="muted">Offer Applies To (all/category/product)</label>
+      <select class="input" name="offerAppliesTo">
+        <option value="all">all</option>
+        <option value="category">category</option>
+        <option value="product">product</option>
+      </select>
+    </div>
+    <div>
+      <label class="muted">Offer Applies Key (categoryKey or productId)</label>
+      <input class="input" name="offerAppliesKey" placeholder="motors / p_..." />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Offer Applies Label (optional display name)</label>
+      <input class="input" name="offerAppliesLabel" placeholder="Motors / Arduino Kit" />
+      <div class="muted" style="padding-top:6px;">If you set type/value + applies-to, the banner auto-builds text and link. Or you can keep Offer Text/Link manually.</div>
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <label class="muted">Offer Link (optional)</label>
+      <input class="input" name="offerLink" placeholder="/shop" />
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <div class="hr"></div>
+      <h4 style="margin:0;">Footer + Contact</h4>
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Footer About Text</label>
+      <input class="input" name="footerAbout" placeholder="Robotics parts, kits & services for makers in Bangladesh." />
+    </div>
+    <div style="grid-column:1/-1;">
+      <label class="muted">Footer Address</label>
+      <input class="input" name="footerAddress" placeholder="Dhaka, Bangladesh" />
+    </div>
+    <div>
+      <label class="muted">Contact Email</label>
+      <input class="input" name="contactEmail" placeholder="support@yourdomain.com" />
+    </div>
+    <div>
+      <label class="muted">Contact Phone</label>
+      <input class="input" name="contactPhone" placeholder="01XXXXXXXXX" />
+    </div>
+
+    <div style="grid-column:1/-1;">
+      <div class="hr"></div>
+      <h4 style="margin:0;">Corner Contact Widget</h4>
+      <div class="muted" style="padding-top:6px;">Bottom-right message icon. Clicking shows WhatsApp + Phone. Leave blank to hide.</div>
+    </div>
+    <div>
+      <label class="muted">WhatsApp Number (optional)</label>
+      <input class="input" name="whatsappNumber" placeholder="8801XXXXXXXXX" />
+    </div>
+    <div>
+      <label class="muted">Phone Number (optional)</label>
+      <input class="input" name="phoneNumber" placeholder="01XXXXXXXXX" />
+    </div>
+    <div style="grid-column:1/-1; display:flex; gap:10px; align-items:center;">
+      <button class="btn primary" type="submit">Save</button>
+      <span class="muted" id="status"></span>
+    </div>
+  </form>
+</section>
+
+<section class="card" style="margin-top:14px;">
+  <div class="card-head"><h3>Coupons</h3><span class="badge">shop</span></div>
+  <div class="hr"></div>
+  <div style="padding:12px;">
+    <form id="couponForm" class="grid two">
+      <div>
+        <label class="muted">Coupon Code</label>
+        <input class="input" name="code" placeholder="SAVE10" required />
+        <div class="muted" style="padding-top:6px;">Code is case-insensitive. Example: SAVE10</div>
+      </div>
+      <div>
+        <label class="muted">Type</label>
+        <select class="input" name="type">
+          <option value="percent">Percent (%)</option>
+          <option value="flat">Flat (৳)</option>
+        </select>
+      </div>
+      <div>
+        <label class="muted">Value</label>
+        <input class="input" name="value" type="number" min="1" step="1" placeholder="10" required />
+      </div>
+      <div>
+        <label class="muted">Min Subtotal (optional)</label>
+        <input class="input" name="minSubtotal" type="number" min="0" step="1" placeholder="0" />
+      </div>
+      <div>
+        <label class="muted">Max Discount (optional)</label>
+        <input class="input" name="maxDiscount" type="number" min="0" step="1" placeholder="500" />
+      </div>
+      <div>
+        <label class="muted">Expires At (optional)</label>
+        <input class="input" name="expiresAt" type="datetime-local" />
+      </div>
+      <div style="grid-column:1/-1; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <label class="muted" style="display:flex; gap:8px; align-items:center;">
+          <input type="checkbox" name="active" checked /> Active
+        </label>
+        <button class="btn primary" type="submit">Add Coupon</button>
+        <span class="muted" id="couponStatus"></span>
+      </div>
+    </form>
+
+    <div class="hr" style="margin:14px 0;"></div>
+    <div class="muted" style="margin-bottom:8px;">Existing coupons</div>
+    <div id="couponList" class="grid one"></div>
+  </div>
+</section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../assets/js/pages/admin-settings.js"></script>
+</body>
+</html>

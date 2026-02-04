@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | RoboticsLeb</title>
+  <link rel="stylesheet" href="/assets/css/theme.css" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#020617;
+      color:#e5e7eb;
+      margin:0;
+    }
+    main.container{display:flex; justify-content:center; align-items:center; min-height: calc(100vh - 90px);}
+    .wrap{
+      width:360px;
+      background:#0f172a;
+      padding:26px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    h1{margin:0 0 10px;font-size:22px;}
+    .muted{color:#94a3b8;font-size:13px;line-height:1.5}
+    .row{margin-top:16px}
+    .btn{
+      width:100%;
+      padding:11px 12px;
+      border-radius:10px;
+      background:#1f2937;
+      color:#e5e7eb;
+      border:1px solid rgba(255,255,255,.08);
+      cursor:pointer;
+      font-weight:700;
+    }
+    .btn.primary{background:#38bdf8;color:#020617;border:none;}
+    .note{margin-top:14px;padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+    .hide{display:none}
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="/"><span class="dot"></span><span class="logo-text">RoboticsLeb</span></a>
+      <nav class="links"><a href="/">Home</a><a href="/shop">Shop</a><a href="/blog">Blog</a><a href="/services">Services</a><a href="/apps">Apps</a><a href="/contact">Contact</a><a href="/about">About</a></nav>
+      <div class="nav-actions">
+        <a class="btn" href="/cart">Cart <span class="badge" data-cart-count>0</span></a>
+        <a class="btn primary" href="/login.html">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+  <div class="wrap">
+    <h1>RoboticsLeb</h1>
+    <div class="muted">
+      Login will happen with your Google (Gmail) account.
+      After login, you will see your Dashboard and your orders.
+    </div>
+
+    <div class="row" id="googleBox">
+      <div id="g_id_onload"></div>
+      <div id="gSignIn"></div>
+    </div>
+
+    <div class="row">
+      <button class="btn" id="backBtn" type="button">Back to Home</button>
+    </div>
+
+    <div class="note" id="configNote" style="display:none;">
+      <div style="font-weight:800;margin-bottom:6px;">Google Login is not configured</div>
+      <div class="muted">
+        To enable Google login, set <b>GOOGLE_CLIENT_ID</b> in backend <b>.env</b> file,
+        then restart the backend server.
+      </div>
+    </div>
+  </div>
+
+
+  </main>
+  <script type="module">
+    import { api } from "./assets/js/core/api.js";
+    import { setToken } from "./assets/js/core/auth.js";
+
+    const nextUrl = new URLSearchParams(location.search).get("next") || "/account";
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      location.href = "/";
+    });
+
+    // Load public config (contains google client id)
+    const cfg = await api.get("/public-config").catch(() => ({}));
+    const clientId = cfg?.googleClientId || "";
+    if (!clientId) {
+      document.getElementById("configNote").style.display = "";
+      document.getElementById("googleBox").classList.add("hide");
+      throw new Error("Missing GOOGLE_CLIENT_ID");
+    }
+
+    // Load Google Identity Services script dynamically
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://accounts.google.com/gsi/client";
+      s.async = true;
+      s.defer = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+
+    // Init + render button
+    window.google.accounts.id.initialize({
+      client_id: clientId,
+      callback: async (resp) => {
+        try {
+          // 1) Exchange Google credential -> our JWT token
+          const out = await api.post("/auth/google", { credential: resp.credential });
+          if (!out?.token) throw new Error("Token missing from server response");
+
+          // 2) Save token in localStorage (admin-style). This is the main auth source for dashboard.
+          setToken(out.token);
+
+          // 3) Verify immediately (so user never lands in dashboard as Guest)
+          await api.get("/auth/me");
+
+          // 4) Go to dashboard
+          location.href = nextUrl;
+        } catch (e) {
+          alert(e?.message || "Google login failed");
+        }
+      }
+    });
+
+    window.google.accounts.id.renderButton(
+      document.getElementById("gSignIn"),
+      { theme: "outline", size: "large", width: 320 }
+    );
+
+    // Optional: one-tap prompt
+    window.google.accounts.id.prompt();
+  </script>
+
+
+  <script type="module" src="/assets/js/core/site-ui.js"></script>
+</body>
+</html>
