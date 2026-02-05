@@ -4,8 +4,8 @@ import { CONFIG } from "../core/config.js";
 import { getCartCount, getCart, setCart } from "../core/cart.js";
 import { getToken, getCurrentUser, logout } from "../core/auth.js";
 
-const cartCountEls = Array.from(document.querySelectorAll("#cartCount, [data-cart-count]"));
-cartCountEls.forEach(el => el.textContent = String(getCartCount()));
+const cartCount = document.getElementById("cartCount");
+cartCount.textContent = String(getCartCount());
 document.getElementById("year").textContent = String(new Date().getFullYear());
 
 const authGate = document.getElementById("authGate");
@@ -226,15 +226,6 @@ function statusIndex(status){
   return idx === -1 ? 0 : idx;
 }
 
-function canCancelOrder(o){
-  const st = String(o?.status || 'pending').toLowerCase();
-  if (!['pending','confirmed'].includes(st)) return false;
-  const createdTs = Date.parse(o?.createdAt || '');
-  if (!createdTs) return false;
-  const ageMin = (Date.now() - createdTs) / 60000;
-  return ageMin <= CANCEL_WINDOW_MIN;
-}
-
 function getPurchasedProducts(orders){
   const map = new Map();
   (orders||[]).forEach(o=>{
@@ -360,7 +351,6 @@ function renderOrdersList(targetEl, orders, limit = null) {
         ${renderStepper(o?.status)}
         <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
           <button class="btn btn-sm" type="button" data-toggle="${detailsId}">Details</button>
-          ${canCancelOrder(o) ? `<button class="btn btn-sm" type="button" data-cancel-order="${encodeURIComponent(id)}">Cancel order</button>` : ''}
           ${pay ? `<span class="muted"><b>Pay:</b> ${pay}</span>` : ""}
           ${ship ? `<span class="muted"><b>Shipping:</b> ${ship}</span>` : ""}
         </div>
@@ -383,30 +373,6 @@ function renderOrdersList(targetEl, orders, limit = null) {
       const open = box && box.style.display !== "none";
       if (box) box.style.display = open ? "none" : "";
       btn.textContent = open ? "Details" : "Hide details";
-    });
-  });
-
-  // Cancel order (within a short window)
-  targetEl.querySelectorAll("[data-cancel-order]").forEach(btn => {
-    btn.addEventListener('click', async ()=>{
-      const id = decodeURIComponent(btn.getAttribute('data-cancel-order') || '');
-      if(!id) return;
-      const reason = prompt(`Why are you cancelling? (Optional)\nYou can cancel within ${CANCEL_WINDOW_MIN} minutes after placing the order.`) || '';
-      if(!confirm('Confirm cancel this order?')) return;
-      btn.disabled = true;
-      const old = btn.textContent;
-      btn.textContent = 'Cancelling…';
-      try{
-        await api.post(`/account/orders/${encodeURIComponent(id)}/cancel`, { reason });
-        // Refresh orders
-        const orders = await api.get('/account/orders').catch(()=>[]);
-        renderOrdersList(ordersTable, orders);
-        renderOrdersList(recentOrders, orders, 3);
-      }catch(err){
-        alert(err?.message || 'Failed to cancel');
-        btn.disabled = false;
-        btn.textContent = old;
-      }
     });
   });
 
@@ -720,14 +686,5 @@ if (profileAddressInput) profileAddressInput.value = me?.address || "";
   if (t) openTab(t);
 }
 
-boot();async function loadCancelWindow(){
-  try{
-    const r = await fetch('/api/public/site-config');
-    if(!r.ok) throw new Error('cfg');
-    const cfg = await r.json();
-    const v = Number(cfg?.cancelWindowMin || 10);
-    if (Number.isFinite(v) && v > 0) CANCEL_WINDOW_MIN = v;
-  }catch{}
-}
-
+boot();
 
