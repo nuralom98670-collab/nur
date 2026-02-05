@@ -16,7 +16,5 @@ export const env = {
 
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
 
-  // তোমার backend callback রুটের URL (নিচে routes এ আমি /auth/google/callback ধরেছি)
-  GOOGLE_CALLBACK_URL:
-    process.env.GOOGLE_CALLBACK_URL || "https://nur-1.onrender.com/auth/google/callback",
+  
 };
