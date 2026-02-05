@@ -212,6 +212,11 @@ body.no-scroll{ overflow: hidden; }
   backdrop-filter: blur(10px);
   color: rgba(255,255,255,0.92);
   overflow: hidden; /* important: avoid edge artifacts */
+
+  /* ✅ শুধু এই 3টা লাইন যোগ করা হয়েছে (side gap remove করার জন্য) */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 }
 
 /* Full viewport background layer */
